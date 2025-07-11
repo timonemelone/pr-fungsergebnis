@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Prüfungsergebnis Rechner</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2em; }
+      .result { margin-top: 1em; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <h1>Prüfungsergebnis Rechner</h1>
+    <form method="post">
+      <label for="first_exam">Ergebnis der ersten Prüfung (%):</label>
+      <input type="number" step="0.1" id="first_exam" name="first_exam" required>
+      <br><br>
+      <label for="desired_final">Gewünschtes Gesamtergebnis (%):</label>
+      <input type="range" id="desired_final" name="desired_final" min="0" max="100" value="50" oninput="out.value = desired_final.value">
+      <output name="out" id="out">50</output>%
+      <br><br>
+      <button type="submit">Berechnen</button>
+    </form>
+    {% if result is not none %}
+    <p class="result">Benötigtes Ergebnis in der zweiten Prüfung: {{ result|round(2) }}%</p>
+    {% endif %}
+  </body>
+</html>
