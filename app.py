@@ -31,6 +31,9 @@ def index():
     if request.method == 'POST':
         first_exam = float(request.form['first_exam'])
         desired_final = float(request.form['desired_final'])
+        # clamp inputs to 0-100
+        first_exam = max(0.0, min(100.0, first_exam))
+        desired_final = max(0.0, min(100.0, desired_final))
         required_second = calculate_required_second(first_exam, desired_final)
         entry = ExamRequest(first_exam=first_exam,
                             desired_final=desired_final,
