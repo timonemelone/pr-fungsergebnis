@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
@@ -40,10 +40,6 @@ def index():
         result = required_second
     return render_template('index.html', result=result)
 
-@app.route('/admin')
-def admin():
-    entries = ExamRequest.query.order_by(ExamRequest.timestamp.desc()).all()
-    return render_template('admin.html', entries=entries)
 
 def calculate_required_second(first_exam, desired_final):
     """Calculate the required second exam percentage."""
